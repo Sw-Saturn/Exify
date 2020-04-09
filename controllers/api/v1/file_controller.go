@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func getPicture(ctx *gin.Context) string{
+func getPicture(ctx *gin.Context) string {
 	img, err := imageupload.Process(ctx.Request, "file")
 	if err != nil {
 		panic(err)
@@ -24,6 +24,7 @@ func getPicture(ctx *gin.Context) string{
 	return filePath
 }
 
+//GetExifHandler is the handler of ImageUpload.
 func GetExifHandler(ctx *gin.Context) {
 	img := getPicture(ctx)
 	exifStr := GetExif(img)
@@ -32,7 +33,8 @@ func GetExifHandler(ctx *gin.Context) {
 	})
 }
 
-func GetExif(img string) string{
+//GetExif is returning the EXIF of an Image.
+func GetExif(img string) string {
 	f, err := os.Open(img)
 	if err != nil {
 		panic(err)
