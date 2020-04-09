@@ -16,11 +16,11 @@ func main() {
 			context.File("./template/index.html")
 		})
 		r.POST("/api/v1/getexif", v1.GetExifHandler)
-		r.Run()
+		r.Run(":8080")
 	}
 }
 
 func cli() {
 	frame := os.Args[1]
-	v1.GetExif(frame)
+	println(v1.GetExif(frame))
 }
