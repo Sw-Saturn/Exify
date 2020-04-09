@@ -1,43 +1,26 @@
 package main
 
 import (
-	"log"
+	"github.com/gin-gonic/gin"
 	"os"
-	"picture-exif-api/controllers"
+	"picture-exif-api/controllers/api/v1"
 )
 
 func main() {
 	if len(os.Args) == 2 {
-		frame := os.Args[1]
-
-		f, err := os.Open(frame)
-		if err != nil {
-			log.Fatal(err)
-		}
-		x, err := controllers.ExifInit(f)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		model := controllers.GetModel(x)
-		println(model)
-
-		focal := controllers.GetFocalLength(x)
-		println(focal)
-
-		focalin35mm := controllers.GetFocalLengthIn35mm(x)
-		println(focalin35mm)
-
-		iso := controllers.GetISOSpeedRatings(x)
-		println(iso)
-
-		fnum := controllers.GetFNumber(x)
-		println(fnum)
-
-		ss := controllers.GetShutterSpeed(x)
-		println(ss)
-
-		dt := controllers.GetDateTime(x)
-		println(dt)
+		cli()
+	} else {
+		r := gin.Default()
+		r.MaxMultipartMemory = 8 << 20
+		r.GET("/", func(context *gin.Context) {
+			context.File("./template/index.html")
+		})
+		r.POST("/api/v1/getexif", v1.GetExifHandler)
+		r.Run()
 	}
+}
+
+func cli() {
+	frame := os.Args[1]
+	v1.GetExif(frame)
 }

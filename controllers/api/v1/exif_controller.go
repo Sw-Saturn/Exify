@@ -1,4 +1,4 @@
-package controllers
+package v1
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ func GetModel(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("Model: %v", camModel.String())
+	return fmt.Sprintf("Model:%v", camModel.String())
 }
 
 //GetFocalLength is returning a FocalLength.
@@ -25,7 +25,7 @@ func GetFocalLength(x *exif.Exif) string {
 		return ""
 	}
 	numer, denom, _ := focal.Rat2(0)
-	return fmt.Sprintf("FocalLength: %.1fmm", float64(numer)/float64(denom))
+	return fmt.Sprintf("FocalLength:%.1fmm", float64(numer)/float64(denom))
 }
 
 //GetFocalLengthIn35mm is returning a FocalLength equivalent to 35mm focal length film.
@@ -34,7 +34,7 @@ func GetFocalLengthIn35mm(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("FocalLength(In35mm): %vmm", focal35)
+	return fmt.Sprintf("FocalLength(In35mm):%vmm", focal35)
 }
 
 //GetISOSpeedRatings is returning an ISOSpeedRatings.
@@ -43,7 +43,7 @@ func GetISOSpeedRatings(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("ISO: %v", iso)
+	return fmt.Sprintf("ISO:%v", iso)
 }
 
 //GetFNumber is returning a FNumber.
@@ -53,7 +53,7 @@ func GetFNumber(x *exif.Exif) string {
 		return ""
 	}
 	numer, denom, _ := fnumber.Rat2(0)
-	return fmt.Sprintf("f: %.1f", float64(numer)/float64(denom))
+	return fmt.Sprintf("f:%.1f", float64(numer)/float64(denom))
 }
 
 //GetShutterSpeed is returning a shutter speed.
@@ -64,7 +64,7 @@ func GetShutterSpeed(x *exif.Exif) string {
 	}
 	numer, denom, _ := shutterspeed.Rat2(0)
 	ss := big.NewRat(numer, denom)
-	return fmt.Sprintf("SS: %v", ss)
+	return fmt.Sprintf("SS:%v", ss)
 }
 
 //GetDateTime is returning a datetime of shooting.
@@ -73,7 +73,7 @@ func GetDateTime(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("Taken: %v", tm)
+	return fmt.Sprintf("Taken:%v", tm)
 }
 
 //GetLocation is returning a location of shooting.
@@ -82,7 +82,7 @@ func GetLocation(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("lat: %v, long: %v", lat, long)
+	return fmt.Sprintf("lat:%v, long:%v", lat, long)
 }
 
 //ExifInit is initialize operation to use an exif module.
