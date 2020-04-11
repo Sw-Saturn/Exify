@@ -16,7 +16,7 @@ func getPicture(ctx *gin.Context) string {
 		panic(err)
 	}
 	h := generateFileHash(img.Data)
-	filePath := fmt.Sprintf("./upload/%s.jpg", h)
+	filePath := fmt.Sprintf("./upload/%s_%s", h, img.Filename)
 	err = img.Save(filePath)
 	if err != nil {
 		panic(err)
