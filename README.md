@@ -1,4 +1,4 @@
-# RamenBot
+# Image2EXIF-API
 [![Go Report Card](https://goreportcard.com/badge/github.com/Sw-Saturn/Image2EXIF-API?style=flat-square)](https://goreportcard.com/report/github.com/Sw-Saturn/Image2EXIF-API?style=flat-square)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/Sw-Saturn/Image2EXIF-API?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/Sw-Saturn/Image2EXIF-API?style=for-the-badge)
