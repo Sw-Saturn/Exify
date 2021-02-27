@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+    branches: [ master ]
+  push:
+    branches: [ master ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Build Docker Image
+        shell: bash
+        run: |
+          docker-compose build
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker-compose push
