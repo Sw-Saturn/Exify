@@ -1,11 +1,13 @@
 version: '3'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: "Dockerfile"
     container_name: 'exify'
     image: 'swsaturn/exify'
     tty: true
-    volumes:
-      - .:/go/src/github.com/Sw-Saturn/Exify
+    env_file:
+      - configs/.env
     ports:
     - 0.0.0.0:8080:8080

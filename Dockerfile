@@ -15,8 +15,8 @@ RUN go build -o app main.go
 FROM alpine:3.13
 
 WORKDIR /go/src/github.com/Sw-Saturn/Exify
-COPY --from=build /go/src/github.com/Sw-Saturn/Exify/app .
-COPY --from=build /go/src/github.com/Sw-Saturn/Exify/template/ ./template
-COPY --from=build /go/src/github.com/Sw-Saturn/Exify/assets/ ./assets
+RUN apk --no-cache add ca-certificates
+COPY --from=build /go/src/github.com/Sw-Saturn/Exify/ .
+RUN mkdir -p ./upload
 
 ENTRYPOINT ["/go/src/github.com/Sw-Saturn/Exify/app"]
