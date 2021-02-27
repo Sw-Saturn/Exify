@@ -109,12 +109,19 @@
 
     function bindEXIFValue(data) {
         let json = JSON.parse(data);
+        let model = json["model_name"].length > 0
+            ? String.fromCodePoint(0x1F4F7) + ": " + json["model_name"] : "";
+        let iso = json["iso"].length > 0
+            ? " ISO " + json["iso"] : "";
+        let f_number = json["f_number"].length > 0
+            ? " f/" + json["f_number"] + " " : "";
+        let lens_model = json["lens_model"].length > 0
+            ? json["lens_model"] + " " : "";
+        let shutter_speed = json["shutter_speed"].length > 0
+            ? json["shutter_speed"] + "s" : "";
+
         $("#tweet-text").text(
-            String.fromCodePoint(0x1F4F7) + ": " + json["model_name"]
-            + " ISO " + json["iso"]
-            + " f/" + json["f_number"] + " "
-            + json["lens_model"] + " "
-            + json["shutter_speed"] + "s"
+            model + iso + f_number + lens_model + shutter_speed
         );
     }
 
