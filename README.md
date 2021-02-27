@@ -7,7 +7,7 @@
 ## Introduction
 
 Get exif information of the image
-![screenshot](https://user-images.githubusercontent.com/20313668/109380794-52c9ce80-791a-11eb-8b03-364bfb769253.png)
+![screenshot](https://user-images.githubusercontent.com/20313668/109381654-f4531f00-791e-11eb-94f7-2034b180f2b8.png)
 
 ## Installing
 
