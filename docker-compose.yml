@@ -7,7 +7,5 @@ services:
     container_name: 'exify'
     image: 'swsaturn/exify'
     tty: true
-    env_file:
-      - configs/.env
     ports:
     - 0.0.0.0:8080:8080
