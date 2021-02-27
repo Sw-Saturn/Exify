@@ -1,7 +1,8 @@
 # Exify
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/Sw-Saturn/Exify)](https://goreportcard.com/report/github.com/Sw-Saturn/Exify)
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/Sw-Saturn/Image2EXIF-API?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/Sw-Saturn/Image2EXIF-API?style=for-the-badge)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/Sw-Saturn/Exify?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/Sw-Saturn/Exify?style=for-the-badge)
 
 ## Introduction
 Api that returns exif information of the image
