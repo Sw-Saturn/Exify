@@ -11,12 +11,12 @@
 <body>
 <section class="hero is-small is-dark">
     <div class="hero-body">
-        <h1 class="title">Exify</h1>
+        <h1 class="title is-size-1-touch">Exify</h1>
     </div>
 </section>
 
 <main class="section">
-    <div class="columns">
+    <div class="columns is-desktop">
     <div class="column">
         <div class="card">
             <div class="card-image">
@@ -27,15 +27,15 @@
                     <div id="fileform" class="file has-name control">
                         <label class="file-label">
                             <input class="file-input" id="file" type="file" name="file" onchange="onFileInput(this);">
-                            <span class="file-cta">
+                            <span class="file-cta is-size-4-touch">
                                 <span class="file-icon"><i class="fas fa-upload"></i></span>
                                 <span class="file-label">Choose a file...</span>
                             </span>
-                            <span class="file-name">*.jpg and *.png</span>
+                            <span class="file-name is-size-4-touch">*.jpg and *.png</span>
                         </label>
                     </div>
                     <div class="control">
-                        <button class="button is-link" id="submit" type="button">Send</button>
+                        <button class="button is-link is-size-4-touch" id="submit" type="button">Send</button>
                     </div>
                 </form>
             </div>
@@ -45,9 +45,9 @@
     <div class="column">
         <div class="card">
             <div class="card-content">
-                <p id="tweet-text" class="content">EXIF</p>
+                <p id="tweet-text" class="content is-size-2-touch">EXIF</p>
             </div>
-            <footer class="card-footer">
+            <footer class="card-footer is-size-2-touch">
                 <a id="copy-button" class="card-footer-item">
                     <span class="icon-text">
                         <span class="icon"><i class="fa fa-clipboard"></i></span>
