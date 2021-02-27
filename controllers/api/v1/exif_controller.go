@@ -12,6 +12,9 @@ import (
 //GetModel is returning a Camera Model.
 func GetModel(x *exif.Exif) string {
 	camModel, err := x.Get(exif.Model)
+	if err != nil {
+		return ""
+	}
 	result, err := camModel.StringVal()
 	if err != nil {
 		return ""
@@ -32,6 +35,9 @@ func GetFocalLength(x *exif.Exif) string {
 //GetLensModel is returning a LensModel.
 func GetLensModel(x *exif.Exif) string {
 	lensModel, err := x.Get(exif.LensModel)
+	if err != nil {
+		return ""
+	}
 	result, err := lensModel.StringVal()
 	if err != nil {
 		return ""
