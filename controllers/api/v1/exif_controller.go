@@ -12,10 +12,11 @@ import (
 //GetModel is returning a Camera Model.
 func GetModel(x *exif.Exif) string {
 	camModel, err := x.Get(exif.Model)
+	result, err := camModel.StringVal()
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("Model:%v", camModel.String())
+	return result
 }
 
 //GetFocalLength is returning a FocalLength.
@@ -25,7 +26,17 @@ func GetFocalLength(x *exif.Exif) string {
 		return ""
 	}
 	numer, denom, _ := focal.Rat2(0)
-	return fmt.Sprintf("FocalLength:%.1fmm", float64(numer)/float64(denom))
+	return fmt.Sprintf("%.1fmm", float64(numer)/float64(denom))
+}
+
+//GetLensModel is returning a LensModel.
+func GetLensModel(x *exif.Exif) string {
+	lensModel, err := x.Get(exif.LensModel)
+	result, err := lensModel.StringVal()
+	if err != nil {
+		return ""
+	}
+	return result
 }
 
 //GetFocalLengthIn35mm is returning a FocalLength equivalent to 35mm focal length film.
@@ -34,7 +45,7 @@ func GetFocalLengthIn35mm(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("FocalLength(In35mm):%vmm", focal35)
+	return fmt.Sprintf("%vmm", focal35)
 }
 
 //GetISOSpeedRatings is returning an ISOSpeedRatings.
@@ -43,7 +54,7 @@ func GetISOSpeedRatings(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("ISO:%v", iso)
+	return iso.String()
 }
 
 //GetFNumber is returning a FNumber.
@@ -53,7 +64,7 @@ func GetFNumber(x *exif.Exif) string {
 		return ""
 	}
 	numer, denom, _ := fnumber.Rat2(0)
-	return fmt.Sprintf("f:%.1f", float64(numer)/float64(denom))
+	return fmt.Sprintf("%.1f", float64(numer)/float64(denom))
 }
 
 //GetShutterSpeed is returning a shutter speed.
@@ -64,7 +75,7 @@ func GetShutterSpeed(x *exif.Exif) string {
 	}
 	numer, denom, _ := shutterspeed.Rat2(0)
 	ss := big.NewRat(numer, denom)
-	return fmt.Sprintf("SS:%v", ss)
+	return ss.String()
 }
 
 //GetDateTime is returning a datetime of shooting.
@@ -73,16 +84,7 @@ func GetDateTime(x *exif.Exif) string {
 	if err != nil {
 		return ""
 	}
-	return fmt.Sprintf("Taken:%v", tm)
-}
-
-//GetLocation is returning a location of shooting.
-func GetLocation(x *exif.Exif) string {
-	lat, long, err := x.LatLong()
-	if err != nil {
-		return ""
-	}
-	return fmt.Sprintf("lat:%v, long:%v", lat, long)
+	return tm.String()
 }
 
 //ExifInit is initialize operation to use an exif module.

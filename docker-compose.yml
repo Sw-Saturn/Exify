@@ -4,6 +4,6 @@ services:
     build: .
     tty: true
     volumes:
-      - .:/go/src/github.com/Sw-Saturn/Image2EXIF-API
+      - .:/go/src/github.com/Sw-Saturn/Exify
     ports:
     - 0.0.0.0:8080:8080

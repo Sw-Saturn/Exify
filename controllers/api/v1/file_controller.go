@@ -3,20 +3,24 @@ package v1
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/olahol/go-imageupload"
 	"net/http"
 	"os"
+	"picture-exif-api/model"
 )
 
 func getPicture(ctx *gin.Context) string {
 	img, err := imageupload.Process(ctx.Request, "file")
 	if err != nil {
-		panic(err)
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"Error": err.Error(),
+		})
+		return ""
 	}
-	h := generateFileHash(img.Data)
-	filePath := fmt.Sprintf("./upload/%s_%s", h, img.Filename)
+	filePath := fmt.Sprintf("./upload/tmp")
 	err = img.Save(filePath)
 	if err != nil {
 		panic(err)
@@ -28,9 +32,7 @@ func getPicture(ctx *gin.Context) string {
 func GetExifHandler(ctx *gin.Context) {
 	img := getPicture(ctx)
 	exifStr := GetExif(img)
-	ctx.JSON(http.StatusOK, gin.H{
-		"exif": exifStr,
-	})
+	ctx.JSON(http.StatusOK, exifStr)
 }
 
 //GetExif is returning the EXIF of an Image.
@@ -43,29 +45,20 @@ func GetExif(img string) string {
 	if err != nil {
 		panic(err)
 	}
+	exif := model.Exif{}
+	exif.ModelName = GetModel(x)
+	exif.Iso = GetISOSpeedRatings(x)
+	exif.FNumber = GetFNumber(x)
+	exif.LensModel = GetLensModel(x)
+	exif.FocalLength = GetFocalLength(x)
+	exif.ShutterSpeed = GetShutterSpeed(x)
 
-	model := GetModel(x)
-	println(model)
-
-	focal := GetFocalLength(x)
-	println(focal)
-
-	focalin35mm := GetFocalLengthIn35mm(x)
-	println(focalin35mm)
-
-	iso := GetISOSpeedRatings(x)
-	println(iso)
-
-	fnum := GetFNumber(x)
-	println(fnum)
-
-	ss := GetShutterSpeed(x)
-	println(ss)
-
-	dt := GetDateTime(x)
-	println(dt)
-
-	return fmt.Sprintf("%s %s %s %s %s", model, iso, fnum, focal, ss)
+	result, err := json.Marshal(exif)
+	if err != nil {
+		panic(err)
+	}
+	print(string(result))
+	return string(result)
 }
 
 func generateFileHash(file []byte) string {
