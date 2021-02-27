@@ -1,15 +1,13 @@
 package v1
 
 import (
-	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
+	"exify/model"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/olahol/go-imageupload"
 	"net/http"
 	"os"
-	"picture-exif-api/model"
 )
 
 func getPicture(ctx *gin.Context) string {
@@ -59,12 +57,4 @@ func GetExif(img string) string {
 	}
 	print(string(result))
 	return string(result)
-}
-
-func generateFileHash(file []byte) string {
-	h := sha256.New()
-	h.Write(file)
-	bs := h.Sum(nil)
-
-	return hex.EncodeToString(bs)
 }
