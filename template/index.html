@@ -144,9 +144,9 @@
                 }
             }).fail((jqXHR, textStatus, errorThrown) => {
                 if (jqXHR.status === 500) {
-                    bindErr("Internal Server Error");
+                    bindErr("ERROR: Exif information cannot be read");
                 } if (jqXHR.status === 400) {
-                    bindErr("This file type is not supported")
+                    bindErr("ERROR: This file type is not supported")
                 }
             });
         }
