@@ -3,7 +3,6 @@ package v1
 import (
 	"encoding/json"
 	"exify/model"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/olahol/go-imageupload"
 	"net/http"
@@ -18,7 +17,7 @@ func getPicture(ctx *gin.Context) string {
 		})
 		return ""
 	}
-	filePath := fmt.Sprintf("./upload/tmp")
+	filePath := "./upload/tmp"
 	err = img.Save(filePath)
 	if err != nil {
 		panic(err)
