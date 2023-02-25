@@ -11,5 +11,5 @@ require (
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/olahol/go-imageupload v0.0.0-20160503070439-09d2b92fa05e
 	github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd
-	golang.org/x/sys v0.0.0-20210226181700-f36f78243c0c // indirect
+	golang.org/x/sys v0.1.0 // indirect
 )
